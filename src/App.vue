@@ -3,8 +3,26 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </nav> -->
+  <header>  <Navigation/> 
+  </header>
   <router-view/>
+  <footer>
+    <Footer/>
+  </footer>
 </template>
+
+<script>
+import Navigation from '@/components/Navigation.vue';
+import Footer from '@/components/Footer.vue'
+
+export default {
+  name: 'HomeView',
+  components: {
+    Navigation, 
+    Footer
+  }
+}
+</script>
 
 <style>
 #app {

@@ -22,8 +22,31 @@
             <li class="nav-item">
               <router-link to='/' class="nav-link">Accueil</router-link>
             </li>
-            <li class="nav-item">
-              <router-link to='/about' class="nav-link">About</router-link>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Propriétaire
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <router-link to='/ajouter_plante' class="nav-link">Ajouter une plante</router-link>
+                <router-link to='/suivi' class="nav-link">Suivi des plantes</router-link>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Gardien
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <router-link to='/garder_des_plantes' class="nav-link">Garder des plantes</router-link>
+                <router-link to='/ajouter_suivi' class="nav-link">Ajouter le suivi</router-link>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Botaniste
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <router-link to='/ajouter_conseil' class="nav-link">Ajouter un conseil</router-link>
+              </div>
             </li>
           </ul>
         </div>
