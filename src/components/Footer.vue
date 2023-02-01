@@ -14,5 +14,6 @@
     font-size: 12px;
     color: #918B8A;
     margin-top: .8em;
+    text-align: center;
 }
 </style>

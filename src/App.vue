@@ -28,13 +28,6 @@ export default {
 </script>
 
 <style>
-
-
-
-
-
-
-
 /* ____________________________________________ */
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -59,5 +52,20 @@ nav a.router-link-exact-active {
   color: #3d7606;
 }
 
+h1 {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align: center;
+  padding: 0.8em;
+  color: #0e5e0b;
+}
+html, body {
+  box-sizing: content-box;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
 
 </style>
