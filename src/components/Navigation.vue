@@ -3,13 +3,13 @@
       <div class="container-fluid">
         <div class='row'>
 
-          <div class='col-1'>
+          <div class='col-1 burger'>
             <button class="navbar-toggler dropDownButton" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
           </div>
 
-          <div class='col-3 logo-div'>
+          <div class='col-9 logo-div'>
             <a aria-current="page" href="/" class='logo-arosaje'>
               <img class='icon' src="@/assets/logo.png">
               <span class='text'>A'rosa-je</span>
@@ -104,10 +104,21 @@
 }
 .link-ss-menu {
   color: gray !important;
+  width: 30%;
+  margin: auto;
+}
+.link-ss-menu:hover {
+  color: green !important;
+  text-shadow: 1px 1px 2px lightgreen, 0 0 1em lightgreen, 0 0 0.2em lightgreen;
 }
 
 .row {
     width: 100%;
+}
+.dropDownButton {
+  margin-left: 0.5em !important;
+  background: #a7e09c;
+  border: 1px solid silver !important;
 }
 /* .logo-arosaje {
   height: 80%;
