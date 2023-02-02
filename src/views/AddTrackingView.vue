@@ -1,6 +1,6 @@
 <template>
   <h1>Mettre à jour le suivi</h1>
-    <p id="text_intro">Ajouter une photo de la plante que vous garder afin de compléter le suivi</p>
+    <p id="text_intro">Bienvenue <span class="user-gardian">user.gardian</span>, ajouter une photo de la plante que vous garder afin de compléter le suivi</p>
     <div class="container-fluid">
       <form id="app" @submit="checkForm" method="post">
       <div class="row p-4">
@@ -156,4 +156,9 @@ export default {
   background-color: #d8ffd1;
   color: #0e5e0b;
 }
+.user-gardian {
+     color: blue;
+     font-weight: bold;
+     text-decoration: underline;
+   }
 </style>

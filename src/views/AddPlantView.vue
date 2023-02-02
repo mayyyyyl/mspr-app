@@ -4,15 +4,12 @@
     <div class="container-fluid justify-content-md-center">
       <div class="row justify-content-md-center">
         <div class="col-md-6 text-center">
-          <h1>Faire garder sa plante</h1>
-          <p>
-
-          </p>
-          <div class="row">
+          <h1>Ajout d'annonce</h1>
+          <p class="row">
             <div class="col-12 pt-4">
-              <span id="title_bloc">Veuillez choisir l'espèce de votre plante</span>
+              <span id="title_bloc">Bienvenue <span class="user-proprio">user.proprietaire</span>, veuillez choisir l'espèce de votre plante</span>
             </div>
-          </div>
+          </p>
           <label for="plants"></label>
           <select class="form-select" aria-label="Default select example" id="plant_id" required>
             <option selected>-- Espèces --</option>
@@ -69,4 +66,9 @@ export default {
   font-size: 22px;
 
 }
+.user-proprio {
+     color: green;
+     font-weight: bold;
+     text-decoration: underline;
+   }
 </style>
