@@ -1,8 +1,7 @@
 <template>
   <h1>Mettre à jour le suivi</h1>
-    <p>Ajouter une photo de la plante que vous garder afin de compléter le suivi</p>
+    <p id="text_intro">Ajouter une photo de la plante que vous garder afin de compléter le suivi</p>
     <div class="container-fluid">
-    <!-- <form method="POST" enctype="multipart/form-data"> -->
       <form id="app" @submit="checkForm" method="post">
       <div class="row p-4">
         <div class="col">
@@ -16,10 +15,10 @@
         </div>
       </div>
       <div class="row p-4">
-        <div class="col">
+        <div class="d-flex col justify-content-center">
           <div id="app" class="web-camera-container">
           <div class="camera-button">
-              <button type="button" class="btn btn-secondary" :class="{ 'is-primary' : !isCameraOpen, 'is-danger' : isCameraOpen}" @click="toggleCamera">
+              <button type="button" class="btn btn_green" :class="{ 'is-primary' : !isCameraOpen, 'is-danger' : isCameraOpen}" @click="toggleCamera">
                 <span v-if="!isCameraOpen">Ouvrir l'appareil photo</span>
                 <span v-else>Fermer l'appareil photo</span>
             </button>
@@ -35,25 +34,25 @@
             
             <div class="camera-shutter" :class="{'flash' : isShotPhoto}"></div>
               
-            <video v-show="!isPhotoTaken" ref="camera" :width="450" :height="337.5" autoplay></video>
+            <video v-show="!isPhotoTaken" ref="camera" :width="250" :height="337.5" autoplay></video>
             
-            <canvas v-show="isPhotoTaken" id="photoTaken" ref="canvas" :width="450" :height="337.5"></canvas>
+            <canvas v-show="isPhotoTaken" id="photoTaken" ref="canvas" :width="250" :height="337.5"></canvas>
           </div>
           
-          <div v-if="isCameraOpen && !isLoading" class="camera-shoot">
-            <button type="button" class="button" @click="takePhoto">
-              <img src="https://img.icons8.com/material-outlined/50/000000/camera--v2.png">
+          <div v-if="isCameraOpen && !isLoading" class="camera-shoot text-center">
+            <button type="button" class="btn" @click="takePhoto">
+              <img src="@/assets/camera.png">
             </button>
           </div>
           <div v-if="isPhotoTaken && isCameraOpen" class="camera-download">
-            <a id="downloadPhoto" download="my-photo.jpg" class="button" role="button" @click="downloadImage">
+            <!-- <a id="downloadPhoto" download="my-photo.jpg" class="button" role="button" @click="downloadImage">
               Télécharger
-            </a>
+            </a> -->
+            <button type="submit" class="btn btn_green">Envoyer</button>
           </div>
         </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Envoyer</button>
     </form>
   </div>
 </template>
@@ -141,3 +140,20 @@ export default {
   }
 }
 </script>
+<style>
+#text_intro{
+  font-size: 14px;
+  padding: .6em;
+  padding-top: 0;
+  text-align: center;
+}
+.btn_green {
+  background-color: #3d7606;
+  color: white;
+}
+
+.btn_green:hover {
+  background-color: #d8ffd1;
+  color: #0e5e0b;
+}
+</style>
