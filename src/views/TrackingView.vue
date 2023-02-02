@@ -1,13 +1,13 @@
 <template>
     <div class="home">
-      <h1> Accueil </h1>
-      <p>Bienvenue sur votre application pour garder et faire garder vos plantes</p>
+      <h1>Suivi de vos plantes</h1>
+      <p class="text-center">Bienvenue <span class="user-proprio">user.proprietaire</span>, suivez votre garde en cours.</p>
     </div>
 
-    <ul>
-      <li v-for="plant in listPlant" :key="plant.id">
+    <ul class="text-center">
+      <li style="list-style-type: none;" v-for="plant in listPlant" :key="plant.id">
         <h2>{{ plant.name }}</h2>
-        <p>{{ plant.conseil }}</p>
+        <p>"{{ plant.conseil }}"</p>
         <img :src="plant.image" alt="image de la plante">
       </li>
     </ul>
@@ -46,4 +46,17 @@
     }
   }
   </script>
+   <style scoped>
+   .text-center {
+     text-align: center;
+   }
+   .user-proprio {
+     color: green;
+     font-weight: bold;
+     text-decoration: underline;
+   }
+   .margin {
+     margin: 10px;
+   }
+   </style>
   

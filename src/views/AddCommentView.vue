@@ -1,28 +1,27 @@
 <template>
     <div class="home">
-      <h1> Accueil </h1>
-      <p>Bienvenue sur votre application pour garder et faire garder vos plantes</p>
+      <h1>Conseils</h1>
+      <p class="text-center">Bienvenue <span class="user-bota">user.botanist</span>, donnez vos conseils professionnels.</p>
     </div>
 
-    <form action="">
-      <label for="proprietaires">Propriétaire</label>
+    <form class="text-center" action="">
+      <label class=" margin" for="proprietaires">Propriétaire :</label>
       <select name="proprietaires" id="proprietaires">
-        <option value="1">Michel</option>
-        <option value="2">Jean</option>
-        <option value="3">Pierre</option>
+        <option v-for = "proprietaire in proprietaires" :value="proprietaire.id">{{ proprietaire.name }}</option>
       </select>
+      <br>
 
-      <label for="plantes">Plante</label>
+      <label class=" margin" for="plantes">Plante :</label>
       <select name="plantes" id="plantes">
-        <option value="1">Mimosa</option>
-        <option value="2">Hortensia</option>
-        <option value="3">Dahlia</option>
+        <option v-for = "plante in plantes" :value="plante.id">{{ plante.name }}</option>
       </select>
+      <br>
 
-      <label for="comment">Conseil</label>
+      <label class=" margin" for="comment">Conseil :</label>
       <input type="text" name="conseil" id="conseil">
+      <br>
 
-      <button type="submit">Ajouter</button>
+      <button class=" margin" type="submit">Ajouter</button>
 
 
     </form>
@@ -57,7 +56,8 @@
     data(){
       return {
         proprietaires,
-        plantes
+        plantes,
+        conseil
       }
     },
     components: {
@@ -66,4 +66,16 @@
     }
   }
   </script>
-  
+  <style scoped>
+  .text-center {
+    text-align: center;
+  }
+  .user-bota {
+    color: gold;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  .margin {
+    margin: 10px;
+  }
+  </style>
