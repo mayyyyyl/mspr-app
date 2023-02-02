@@ -22,24 +22,73 @@
           <img src="@/assets/avatar.png" style="width: 25px;">
         </div>
         <div class="col-4" id="utlisateur_name">
-          <span>Nom de l'utilisateur</span>
+          <span>{{ users[0]["firstname"] }} {{ users[0]["lastname"] }}</span>
         </div>
         <div class="col-5" id="nb_plant">Nombre de plantes: <span id="nb_plant_value">2</span></div>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 import Navigation from '@/components/Navigation.vue';
 import Footer from '@/components/Footer.vue'
+import axios from 'axios'
+
+
+const apiUsers = "http://localhost:8080/api/users"
 
 export default {
   name: 'HomeView',
   components: {
     Navigation, 
     Footer
-  }
+  },
+    data() {
+        return {
+            users: null,
+        };
+    },
+    created: function () {
+        this.fetchData()
+    },
+    methods: {
+        fetchData: async function () {
+              try {
+                  const response = await axios.get(apiUsers)
+                  this.users = response['data']['_embedded']['users']
+                  console.log(this.users)
+                  console.log(this.users[0]['firstname'])
+              } catch (error) {
+                  console.log(error)
+            }
+        },
+    }
+  // data () {
+  //   return {
+  //     users: null
+  //   }
+  // },
+  // created: function () {
+  //           this.fetchData()
+  //       },
+  // methods: {
+  //           fetchData: async function () {
+  //               const searchAddress = this.searchAddress
+  //               const searchLimit = this.searchLimit
+
+  //               if (searchAddress.length > 4) {
+  //                   try {
+  //                       const response = await axios.get(apiUrl + searchAddress + limit + searchLimit)
+  //                       this.adresses = response.data['features']
+  //                   } catch (error) {
+  //                       console.log(error)
+  //                   }
+  //               }
+  //               else {
+
+  //               }
+  //           },
+  //         }
 }
 </script>
 <style scoped>
