@@ -17,7 +17,8 @@
           <span id="title_bloc">Plantes disponible à garder :</span>
         </div>
       </div>
-      <div class="row p-2 m-3 align-items-center" id="bloc_annonce" v-for="user, index in users">
+      <router-link to="/garder_des_plantes" custom v-slot="{ navigate }">
+      <div class="row p-2 m-3 align-items-center" id="bloc_annonce" v-for="user, index in users" @click="navigate">
         <div class="col-3">
           <img src="@/assets/avatar.png" style="width: 25px;">
         </div>
@@ -28,6 +29,7 @@
           <span id="nb_plant_value">{{ userPlants[index] }}</span>
         </div>
       </div>
+      </router-link>
     </div>
   </div>
 </template>
