@@ -10,21 +10,23 @@
             <img id="icon_btn" src="@/assets/plant_icon_bw.png">
             Ajouter une plante</button>
           </router-link>
+        </div>
+      </div>
       <div class="row">
         <div class="col-12 pt-4">
           <span id="title_bloc">Plantes disponible à garder :</span>
         </div>
       </div>
-        </div>
-      </div>
-      <div class="row justify-content-md-center p-2 align-items-center" id="bloc_annonce">
+      <div class="row p-2 m-3 align-items-center" id="bloc_annonce" v-for="user, index in users">
         <div class="col-3">
           <img src="@/assets/avatar.png" style="width: 25px;">
         </div>
-        <div class="col-4" id="utlisateur_name">
-          <span>{{ users[0]["firstname"] }} {{ users[0]["lastname"] }}</span>
+        <div class="col-4" id="utilisateur_name">
+          <span>{{ user["firstname"] }} {{ user["lastname"] }}</span>
         </div>
-        <div class="col-5" id="nb_plant">Nombre de plantes: <span id="nb_plant_value">2</span></div>
+        <div class="col-5 text-center" id="nb_plant">Nombre de plantes: 
+          <span id="nb_plant_value">{{ userPlants[index] }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -36,6 +38,7 @@ import axios from 'axios'
 
 
 const apiUsers = "http://localhost:8080/api/users"
+const apiUserPlants = "http://localhost:8080/api/users/"
 
 export default {
   name: 'HomeView',
@@ -46,6 +49,7 @@ export default {
     data() {
         return {
             users: null,
+            userPlants: [],
         };
     },
     created: function () {
@@ -56,39 +60,20 @@ export default {
               try {
                   const response = await axios.get(apiUsers)
                   this.users = response['data']['_embedded']['users']
-                  console.log(this.users)
-                  console.log(this.users[0]['firstname'])
               } catch (error) {
                   console.log(error)
-            }
+              };
+              for (var i = 1; i < this.users.length; i++) {
+                try {
+                    const responsePlants = await axios.get(apiUserPlants + i + "/services")
+                    this.userPlants.push(responsePlants['data']['_embedded']['services'].length)
+                    console.log(this.userPlants)
+                } catch (error) {
+                    console.log(error)
+                }
+              };
         },
-    }
-  // data () {
-  //   return {
-  //     users: null
-  //   }
-  // },
-  // created: function () {
-  //           this.fetchData()
-  //       },
-  // methods: {
-  //           fetchData: async function () {
-  //               const searchAddress = this.searchAddress
-  //               const searchLimit = this.searchLimit
-
-  //               if (searchAddress.length > 4) {
-  //                   try {
-  //                       const response = await axios.get(apiUrl + searchAddress + limit + searchLimit)
-  //                       this.adresses = response.data['features']
-  //                   } catch (error) {
-  //                       console.log(error)
-  //                   }
-  //               }
-  //               else {
-
-  //               }
-  //           },
-  //         }
+  }
 }
 </script>
 <style scoped>
@@ -97,7 +82,7 @@ export default {
   padding: .6em;
   padding-top: 0;
 }
-#utlisateur_name{
+#utilisateur_name{
   font-size: 13px;
 }
 #nb_plant{
@@ -109,6 +94,9 @@ export default {
   border-radius: 5px;
   margin: 5px;
   box-shadow: 2px 3px 3px rgb(206, 206, 206);
+}
+#bloc_annonce:hover{
+  background-color: #d0f6ac;
 }
 #title_bloc {
   font-size: 17px;
@@ -128,7 +116,6 @@ export default {
   background-color: #3d7606;
   color: white;
 }
-
 .btn_green:hover {
   background-color: #d8ffd1;
   color: #0e5e0b;
