@@ -4,29 +4,19 @@
     <div class="container-fluid justify-content-md-center">
       <div class="row justify-content-md-center">
         <div class="col-md-6 text-center">
-          <h1>Ajout d'annonce</h1>
-          <p class="row">
-            <div class="col-12 pt-4">
-              <span id="title_bloc">Bienvenue <span class="user-proprio">user.proprietaire</span>, veuillez choisir l'espèce de votre plante</span>
-            </div>
-          </p>
-          <label for="plants"></label>
-          <select class="form-select" aria-label="Default select example" id="plant_id" required>
-            <option selected>-- Espèces --</option>
-            <option value="1">Mimosa</option>
-            <option value="2">Hortancia</option>
-            <option value="3">Dahlia</option>
-          </select>
-          <div>
-            <p></p>
-            <div>
-              <p></p>
+          <h1>Ajouter une annonce</h1>
+          <div class="row">
+            <div class="col-12 pb-4">
+              <span id="title_bloc">Bienvenue <span class="user-proprio">user.proprietaire</span>, ici vous pouvez ajouter de nouvelles annonces afin de faire garder vos plantes par un autre utilisateur pendant votre absence.</span>
             </div>
           </div>
+          <label for="plants">Veuillez choisir l'espèce de votre plante:</label>
+          <select class="form-select" aria-label="Default select example" id="plant_id" required>
+            <option selected>-- Pas de plantes selectionnées --</option>
+            <option v-for="plant in plantList"  :value="plant['spicies']" >{{ plant["spicies"] }}</option>
+          </select>
           <router-link to="/ajouter_plante" custom v-slot="{ navigate }">
-            <button class="btn btn_green" @click="navigate" role="link">
-              <img id="icon_btn" src="@/assets/plant_icon_bw.png">
-              Ajouter une plante</button>
+            <button class="btn btn_green mt-5" @click="navigate" role="link">Ajouter une plante</button>
           </router-link>
         </div>
       </div>
@@ -37,14 +27,36 @@
 
 <script>
 import Navigation from '@/components/Navigation.vue';
-import Footer from '@/components/Footer.vue'
+import Footer from '@/components/Footer.vue';
+import axios from 'axios';
+
+const apiPlantList = "http://localhost:8080/api/plantsLists"
 
 export default {
   name: 'HomeView',
   components: {
     Navigation,
     Footer
-  }
+  },
+  data() {
+        return {
+            plantList: null,
+        };
+    },
+  created: function () {
+        this.fetchData()
+    },
+    methods: {
+        fetchData: async function () {
+              try {
+                  const response = await axios.get(apiPlantList)
+                  this.plantList = response['data']['_embedded']['plantsLists']
+                  console.log(this.plantList)
+              } catch (error) {
+                  console.log(error)
+              };
+            }
+          }
 }
 </script>
 <style scoped>
@@ -70,5 +82,10 @@ export default {
      color: green;
      font-weight: bold;
      text-decoration: underline;
-   }
+}
+.form-select{
+  max-width: 50%;
+  margin: auto;
+  margin-top: .6em;
+}
 </style>
