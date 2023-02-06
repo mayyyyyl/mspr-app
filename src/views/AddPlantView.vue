@@ -70,7 +70,7 @@ export default {
 }
 
 .btn_green:hover {
-  background-color: #d8ffd1;
+  background-color: #d0f6ac;
   color: #0e5e0b;
 }
 .dropdown{

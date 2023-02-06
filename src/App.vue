@@ -1,17 +1,15 @@
 <template>
-  <!-- <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav> -->
-  <header>
-    <Navigation/> 
-  </header>
-
-  <router-view/>
-
-  <footer>
-    <Footer/>
-  </footer>
+  <body>
+    <header>
+      <Navigation/>
+    </header>
+    <main>      
+      <router-view/>
+    </main>
+    <footer>
+      <Footer/>
+    </footer>
+  </body>
 </template>
 
 <script>
@@ -28,7 +26,14 @@ export default {
 </script>
 
 <style>
-/* ____________________________________________ */
+/* import de font */
+@import url('https://fonts.googleapis.com/css2?family=Marck+Script&family=Rubik:wght@300&display=swap');
+
+
+h2, h3, h4, h5 {
+  font-family: "Rubik";
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

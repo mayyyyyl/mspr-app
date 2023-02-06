@@ -74,8 +74,8 @@
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap'); */
 
 .navbar {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
