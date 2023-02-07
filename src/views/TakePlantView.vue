@@ -1,63 +1,76 @@
 <template>
-    <div class="home">
-      <h1>Gardiennage</h1>
-      <p class="text-center">Bienvenue <span class="user-gardian">user.gardian</span>, choisissez une garde.</p>
+  <div class="home">
+    <h1>Garder des plantes</h1>
+    <p class="text-center">Passionnez de botanique, vous voulez rendre un service en gardant les plantes d'un autre utilisateur. Vous êtes au bon endroit !</p>
 
-      <form class="text-center" action="">
+    <form class="text-center" action="POST">
 
+      <select class="form-select mb-3" aria-label="Default select example" id="plant_id" required>
+          <option selected>-- Pas de plantes selectionnées --</option>
+          <option v-for="proprietaire, index in proprietaires"  :value="proprietaire.firstname" >Les {{ userPlants[index] }} plante(s) de {{ proprietaire.firstname }} </option>
+      </select>
+      <button class="btn btn_green" type="submit">Valider cette garde</button>
+    </form>
 
-        <div v-for = "proprietaire in proprietaires" :key="proprietaire.id">
-          <input type="radio" :id="proprietaire.id" :value="proprietaire.id" name="proprietaire">
-          <label class="margin" :for="proprietaire.id">{{ proprietaire.name }}</label>
-        </div>
-        <br>
+  </div>
+</template>
 
-
-
-        <button class=" margin" type="submit">Choisir cette garde</button>
-      </form>
-
-
-      
-    </div>
-  </template>
-  
-  <script>
-  const proprietaires = [
-    { id: 1, name: 'Michel', id_plant: 1 },
-    { id: 2, name: 'Jean', id_plant: 2 },
-    { id: 3, name: 'Pierre', id_plant: 3 }
-  ]
+<script>
+import Navigation from '@/components/Navigation.vue';
+import Footer from '@/components/Footer.vue'
+import axios from 'axios'
 
 
+const apiUsers = "http://localhost:8080/api/users"
+const apiUserPlants = "http://localhost:8080/api/users/"
 
-
-  import Navigation from '@/components/Navigation.vue';
-  import Footer from '@/components/Footer.vue'
-  
-  export default {
-    data(){
-      return {
-        proprietaires
-      }
+export default {
+  name: 'HomeView',
+  components: {
+    Navigation, 
+    Footer
+  },
+    data() {
+        return {
+            proprietaires: null,
+            userPlants: [],
+        };
     },
-    components: {
-      Navigation, 
-      Footer
-    }
+    created: function () {
+        this.fetchData()
+    },
+    methods: {
+        fetchData: async function () {
+              try {
+                  const response = await axios.get(apiUsers)
+                  this.proprietaires = response['data']['_embedded']['users']
+              } catch (error) {
+                  console.log(error)
+              };
+              for (var i = 1; i < this.proprietaires.length; i++) {
+                try {
+                    const responsePlants = await axios.get(apiUserPlants + i + "/services")
+                    this.userPlants.push(responsePlants['data']['_embedded']['services'].length)
+                    console.log(this.userPlants)
+                } catch (error) {
+                    console.log(error)
+                }
+              };
+        },
   }
-  </script>
-   <style scoped>
-   .text-center {
-     text-align: center;
-   }
-   .user-gardian {
-     color: blue;
-     font-weight: bold;
-     text-decoration: underline;
-   }
-   .margin {
-     margin: 10px;
-   }
-   </style>
+}
+</script>
+<style scoped>
+.text-center {
+  text-align: center;
+}
+.btn_green {
+background-color: #3d7606;
+color: white;
+}
+.btn_green:hover {
+  background-color: #d0f6ac;
+  color: #0e5e0b;
+}
+</style>
   
