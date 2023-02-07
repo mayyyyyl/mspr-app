@@ -3,14 +3,31 @@
       <h1>Suivi de vos plantes</h1>
       <p class="text-center">Retrouvez ici toutes les photos de vos plantes envoyées par les gardiens. Et les précieux conseils de nos botanistes.</p>
     </div>
-
-    <ul class="text-center">
-      <li style="list-style-type: none;" v-for="plant in listPlant" :key="plant.id">
-        <h2>{{ plant.name }}</h2>
-        <p>"{{ plant.conseil }}"</p>
-        <img :src="plant.image" alt="image de la plante">
-      </li>
-    </ul>
+    
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner text-center">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="@/assets/smallplant.jpg" alt="First plant">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="@/assets/plant-pot.jpg" alt="Second plant">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="@/assets/succulents.jpg" alt="Third plant">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  </a>
+    </div>
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
@@ -37,18 +54,6 @@
   </template>
   
   <script>
-  const listPlant = [
-    { id: 1, name: 'Mimosa', 
-    conseil : 'Arrosez-la peu souvent.',
-    image: 'https://www.jardiner-malin.com/wp-content/uploads/2019/03/mimosa-1.jpg' },
-    { id: 2, name: 'Hortensia', 
-    conseil : 'Arrosez-la trés souvent.', 
-    image: 'https://www.jardiner-malin.com/wp-content/uploads/2019/03/hortensia-1.jpg' },
-    { id: 3, name: 'Dahlia',
-    conseil : 'Arrosez-la pas du tout.',
-    image: 'https://www.jardiner-malin.com/wp-content/uploads/2019/03/dahlia-1.jpg' },
-  ];
-
   const apiAdviceList = "http://localhost:8080/api/botanists/1/advices"
   const apiBotanist = "http://localhost:8080/api/botanists"
 
@@ -67,7 +72,6 @@
             adviceList: null,
             botanist:null,
             limit: 2,
-            listPlant,
         };
     },
     computed:{

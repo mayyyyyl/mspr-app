@@ -7,7 +7,7 @@
           <h1>Ajouter une annonce</h1>
           <div class="row">
             <div class="col-12 pb-4">
-              <span id="title_bloc">Bienvenue <span class="user-proprio">user.proprietaire</span>, ici vous pouvez ajouter de nouvelles annonces afin de faire garder vos plantes par un autre utilisateur pendant votre absence.</span>
+              <span id="title_bloc">Bienvenue, ici vous pouvez ajouter de nouvelles annonces afin de faire garder vos plantes par un autre utilisateur pendant votre absence.</span>
             </div>
           </div>
           <label for="plants">Veuillez choisir l'espèce de votre plante:</label>
