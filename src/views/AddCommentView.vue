@@ -1,7 +1,7 @@
 <template>
     <div class="home">
-      <h1>Conseils</h1>
-      <p class="text-center">Bienvenue <span class="user-bota">user.botanist</span>, donnez vos conseils professionnels.</p>
+      <h1>Ajouter un conseil</h1>
+      <p class="text-center">Entant expert sur la plateforme, n'hésitez à donner vos conseils professionnels et vos secrets de grands-mères pour garder ses plantes en pleine santé</p>
     </div>
 
     <form class="text-center" action="">
@@ -21,7 +21,7 @@
       <input type="text" name="conseil" id="conseil">
       <br>
 
-      <button class=" margin" type="submit">Ajouter</button>
+      <button class="btn btn_green" type="submit">Ajouter le conseil</button>
 
 
     </form>
@@ -70,12 +70,15 @@
   .text-center {
     text-align: center;
   }
-  .user-bota {
-    color: gold;
-    font-weight: bold;
-    text-decoration: underline;
-  }
   .margin {
     margin: 10px;
+  }
+  .btn_green {
+  background-color: #3d7606;
+  color: white;
+  }
+  .btn_green:hover {
+  background-color: #d0f6ac;
+  color: #0e5e0b;
   }
   </style>
