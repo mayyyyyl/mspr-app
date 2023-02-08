@@ -1,18 +1,19 @@
 <template>
-  <div class="home">
-    <h1>Garder des plantes</h1>
+  <div class="container-fluid home">
+    <div class="row">
+        <h1>Garder des plantes</h1>
     <p class="text-center">Passionnez de botanique, vous voulez rendre un service en gardant les plantes d'un autre utilisateur. Vous êtes au bon endroit !</p>
-
-    <form class="text-center" action="POST">
-
-      <select class="form-select mb-3" aria-label="Default select example" id="plant_id" required>
-          <option selected>-- Pas de plantes selectionnées --</option>
-          <option v-for="proprietaire, index in proprietaires"  :value="proprietaire.firstname" >Les {{ userPlants[index] }} plante(s) de {{ proprietaire.firstname }} </option>
-      </select>
-      <button class="btn btn_green" type="submit">Valider cette garde</button>
-    </form>
-
-  </div>
+    </div>
+    <div class="row p-4">
+        <form class="text-center" action="POST">
+          <select class="form-select mb-3" aria-label="Default select example" id="plant_id" required>
+              <option selected>-- Pas de plantes selectionnées --</option>
+              <option v-for="proprietaire, index in proprietaires"  :value="proprietaire.firstname" >Les {{ userPlants[index] }} plante(s) de {{ proprietaire.firstname }} </option>
+          </select>
+          <button class="btn btn_green" type="submit">Valider cette garde</button>
+        </form>
+      </div>
+    </div>
 </template>
 
 <script>
@@ -21,8 +22,7 @@ import Footer from '@/components/Footer.vue'
 import axios from 'axios'
 
 
-const apiUsers = "http://localhost:8080/api/users"
-const apiUserPlants = "http://localhost:8080/api/users/"
+const apiUsers = "/api/users"
 
 export default {
   name: 'HomeView',
@@ -49,7 +49,7 @@ export default {
               };
               for (var i = 1; i < this.proprietaires.length; i++) {
                 try {
-                    const responsePlants = await axios.get(apiUserPlants + i + "/services")
+                    const responsePlants = await axios.get(apiUsers +"/" + i + "/services")
                     this.userPlants.push(responsePlants['data']['_embedded']['services'].length)
                     console.log(this.userPlants)
                 } catch (error) {

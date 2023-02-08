@@ -30,7 +30,7 @@ import Navigation from '@/components/Navigation.vue';
 import Footer from '@/components/Footer.vue';
 import axios from 'axios';
 
-const apiPlantList = "http://localhost:8080/api/plantsLists"
+const apiPlantList = "/api/plantsLists"
 
 export default {
   name: 'HomeView',

@@ -1,10 +1,12 @@
 <template>
-    <div class="home">
-      <h1>Ajouter un conseil</h1>
+    <div class="container-fluid home">
+      <div class="row">
+        <h1>Ajouter un conseil</h1>
       <p class="text-center">Entant expert sur la plateforme, n'hésitez à donner vos conseils professionnels et vos secrets de grands-mères pour garder ses plantes en pleine santé</p>
     </div>
-
-    <form class="text-center" action="">
+      </div>
+      <div class="row p-4">
+        <form class="text-center" action="">
       <label class=" margin" for="proprietaires">Propriétaire :</label>
       <select name="proprietaires" id="proprietaires">
         <option v-for = "proprietaire in proprietaires" :value="proprietaire.id">{{ proprietaire.name }}</option>
@@ -23,8 +25,8 @@
 
       <button class="btn btn_green" type="submit">Ajouter le conseil</button>
 
-
     </form>
+      </div>
   </template>
   
   <script>

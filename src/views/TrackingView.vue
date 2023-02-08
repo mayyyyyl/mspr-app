@@ -54,8 +54,8 @@
   </template>
   
   <script>
-  const apiAdviceList = "http://localhost:8080/api/botanists/1/advices"
-  const apiBotanist = "http://localhost:8080/api/botanists"
+  const apiAdviceList = "/api/botanists/1/advices"
+  const apiBotanist = "/api/botanists"
 
 
   import Navigation from '@/components/Navigation.vue';

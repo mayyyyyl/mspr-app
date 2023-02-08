@@ -39,8 +39,7 @@ import Footer from '@/components/Footer.vue'
 import axios from 'axios'
 
 
-const apiUsers = "http://localhost:8080/api/users"
-const apiUserPlants = "http://localhost:8080/api/users/"
+const apiUsers = "/api/users"
 
 export default {
   name: 'HomeView',
@@ -67,7 +66,7 @@ export default {
               };
               for (var i = 1; i < this.users.length; i++) {
                 try {
-                    const responsePlants = await axios.get(apiUserPlants + i + "/services")
+                    const responsePlants = await axios.get(apiUsers +"/" + i + "/services")
                     this.userPlants.push(responsePlants['data']['_embedded']['services'].length)
                     console.log(this.userPlants)
                 } catch (error) {
