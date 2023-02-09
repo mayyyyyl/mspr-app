@@ -1,5 +1,5 @@
 <template>
-  <form id="plant_id" @submit="checkForm" method="post">
+  <form id="plant_id" v-on:submit.prevent="submitForm">
   <div class="add_plant">
     <div class="container-fluid justify-content-md-center">
       <div class="row justify-content-md-center">
@@ -10,14 +10,12 @@
               <span id="title_bloc">Bienvenue, ici vous pouvez ajouter de nouvelles annonces afin de faire garder vos plantes par un autre utilisateur pendant votre absence.</span>
             </div>
           </div>
-          <label for="plants">Veuillez choisir l'espèce de votre plante:</label>
-          <select class="form-select" aria-label="Default select example" id="plant_id" required>
+          <label for="plant_select">Veuillez choisir l'espèce de votre plante:</label>
+          <select class="form-select" aria-label="Default select example" id="plant_select" name="plant_select" v-model="plant_select" required>
             <option selected>-- Pas de plantes selectionnées --</option>
-            <option v-for="plant in plantList"  :value="plant['spicies']" >{{ plant["spicies"] }}</option>
+            <option v-for="plant, index in plantList"  :value="index + 1" >{{ plant["spicies"] }}</option>
           </select>
-          <router-link to="/ajouter_plante" custom v-slot="{ navigate }">
-            <button class="btn btn_green mt-5" @click="navigate" role="link">Ajouter une plante</button>
-          </router-link>
+            <button class="btn btn_green mt-5" type="submit" role="submit">Ajouter une plante</button>
         </div>
       </div>
     </div>
@@ -31,6 +29,7 @@ import Footer from '@/components/Footer.vue';
 import axios from 'axios';
 
 const apiPlantList = "/api/plantsLists"
+const apiService = "/api/services"
 
 export default {
   name: 'HomeView',
@@ -55,7 +54,19 @@ export default {
               } catch (error) {
                   console.log(error)
               };
-            }
+            },
+            submitForm(){
+
+            axios.post(apiService, { user_id: 1, plant_id: this.plant_select })
+                 .then((res) => {
+                     console.log(res)
+                 })
+                 .catch((error) => {
+                     console.log(error)
+                 }).finally(() => {
+                     //Perform action in always
+                 });
+        }
           }
 }
 </script>
