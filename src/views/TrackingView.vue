@@ -44,14 +44,12 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 justify-content-center">
-          <button class="btn" @click="limit = null">Voir plus</button>
+        <div class="d-flex col-md-6 justify-content-center">
+          <button class="btn text-center" @click="limit = null">Voir plus</button>
         </div>
       </div>
-    </div>
-
-    
-  </template>
+    </div> 
+</template>
   
   <script>
   const apiAdviceList = "/api/botanists/1/advices"

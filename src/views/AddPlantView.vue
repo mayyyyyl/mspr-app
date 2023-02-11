@@ -89,7 +89,7 @@ export default {
      text-decoration: underline;
 }
 .form-select{
-  max-width: 50%;
+  max-width: 80%;
   margin: auto;
   margin-top: .6em;
 }
