@@ -34,19 +34,12 @@
   </div>
 </template>
 <script>
-import Navigation from '@/components/Navigation.vue';
-import Footer from '@/components/Footer.vue'
 import axios from 'axios'
 
 
 const apiUsers = "/api/users"
 
 export default {
-  name: 'HomeView',
-  components: {
-    Navigation, 
-    Footer
-  },
     data() {
         return {
             users: null,

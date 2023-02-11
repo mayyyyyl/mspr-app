@@ -11,8 +11,8 @@
             </div>
           </div>
           <label for="plant_select">Veuillez choisir l'espèce de votre plante:</label>
-          <select class="form-select" aria-label="Default select example" id="plant_select" name="plant_select" v-model="plant_select" required>
-            <option selected>-- Pas de plantes selectionnées --</option>
+          <select class="form-select" id="plant_select" name="plant_select" v-model="plant_select" required>
+            <option :value="null">-- Pas de plantes selectionnées --</option>
             <option v-for="plant, index in plantList"  :value="index + 1" >{{ plant["spicies"] }}</option>
           </select>
             <button class="btn btn_green mt-5" type="submit" role="submit">Ajouter une plante</button>
@@ -24,22 +24,16 @@
 </template>
 
 <script>
-import Navigation from '@/components/Navigation.vue';
-import Footer from '@/components/Footer.vue';
 import axios from 'axios';
 
 const apiPlantList = "/api/plantsLists"
 const apiService = "/api/services"
 
 export default {
-  name: 'HomeView',
-  components: {
-    Navigation,
-    Footer
-  },
   data() {
         return {
             plantList: null,
+            plant_select: null,
         };
     },
   created: function () {
@@ -57,7 +51,7 @@ export default {
             },
             submitForm(){
 
-            axios.post(apiService, { user_id: 1, plant_id: this.plant_select })
+            axios.post(apiService, { user: 1, plantsList: this.plant_select })
                  .then((res) => {
                      console.log(res)
                  })

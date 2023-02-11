@@ -5,9 +5,9 @@
     <p class="text-center">Passionnez de botanique, vous voulez rendre un service en gardant les plantes d'un autre utilisateur. Vous êtes au bon endroit !</p>
     </div>
     <div class="row p-4">
-        <form class="text-center" action="POST">
-          <select class="form-select mb-3" aria-label="Default select example" id="plant_id" required>
-              <option selected>-- Pas de plantes selectionnées --</option>
+      <form class="text-center" id="plant_id" v-on:submit.prevent="submitForm">
+          <select class="form-select mb-3" id="plant_select" name="plant_select" v-model="plant_select" required >
+              <option :value="null">-- Pas de plantes selectionnées --</option>
               <option v-for="proprietaire, index in proprietaires"  :value="proprietaire.firstname" >Les {{ userPlants[index] }} plante(s) de {{ proprietaire.firstname }} </option>
           </select>
           <button class="btn btn_green" type="submit">Valider cette garde</button>
@@ -17,23 +17,18 @@
 </template>
 
 <script>
-import Navigation from '@/components/Navigation.vue';
-import Footer from '@/components/Footer.vue'
 import axios from 'axios'
 
 
 const apiUsers = "/api/users"
+const apiService = "/api/services"
 
 export default {
-  name: 'HomeView',
-  components: {
-    Navigation, 
-    Footer
-  },
     data() {
         return {
             proprietaires: null,
             userPlants: [],
+            plant_select: null,
         };
     },
     created: function () {
@@ -57,6 +52,18 @@ export default {
                 }
               };
         },
+        submitForm(){
+
+        axios.post(apiService, { user:2, gardien:1 ,plantsList: this.plant_select })
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((error) => {
+                console.log(error)
+            }).finally(() => {
+                //Perform action in always
+            });
+        }
   }
 }
 </script>

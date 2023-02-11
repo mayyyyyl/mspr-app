@@ -7,19 +7,19 @@
       </div>
       <div class="row p-4">
         <form class="text-center" action="">
-      <label class=" margin" for="proprietaires">Propriétaire :</label>
+      <label class="margin" for="proprietaires">Propriétaire :</label>
       <select name="proprietaires" id="proprietaires">
         <option v-for = "proprietaire in proprietaires" :value="proprietaire.id">{{ proprietaire.name }}</option>
       </select>
       <br>
 
-      <label class=" margin" for="plantes">Plante :</label>
+      <label class="margin" for="plantes">Plante :</label>
       <select name="plantes" id="plantes">
         <option v-for = "plante in plantes" :value="plante.id">{{ plante.name }}</option>
       </select>
       <br>
 
-      <label class=" margin" for="comment">Conseil :</label>
+      <label class="margin" for="comment">Conseil :</label>
       <input type="text" name="conseil" id="conseil">
       <br>
 
@@ -48,12 +48,6 @@
   ];
   const conseil = "";
 
-
-  
-
-  import Navigation from '@/components/Navigation.vue';
-  import Footer from '@/components/Footer.vue'
-  
   export default {
     data(){
       return {
@@ -61,10 +55,6 @@
         plantes,
         conseil
       }
-    },
-    components: {
-      Navigation, 
-      Footer
     }
   }
   </script>

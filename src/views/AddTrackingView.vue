@@ -1,29 +1,26 @@
 <template>
   <h1>Mettre à jour le suivi</h1>
-    <p id="text_intro">Ajouter une photo de la plante que vous garder afin de compléter son suivi</p>
+    <p id="text_intro">Ajouter une photo de la plante que vous gardez afin de compléter son suivi</p>
     <div class="container-fluid">
-      <form id="app" @submit="checkForm" method="post">
+      <form id="app" v-on:submit.prevent="submitForm">
       <div class="row p-4">
         <div class="col">
           <label for="plant_id">Choisir la plante pour le suivi:</label>
-          <select class="form-select" aria-label="Default select example" id="plant_id" required>
-            <option selected>-- Pas de plante selectionnée --</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+          <select class="form-select" id="plant_select" name="plant_select" v-model="plant_select" required>
+            <option :value="null">-- Pas de plante selectionnée --</option>
+            <option v-for="plant, index in plantList"  :value="index + 1" >{{ plant }}</option>
           </select>
         </div>
       </div>
       <div class="row p-4">
         <div class="d-flex col justify-content-center">
           <div id="app" class="web-camera-container">
-          <div class="camera-button">
+          <div class="camera-button text-center">
               <button type="button" class="btn btn_green" :class="{ 'is-primary' : !isCameraOpen, 'is-danger' : isCameraOpen}" @click="toggleCamera">
                 <span v-if="!isCameraOpen">Ouvrir l'appareil photo</span>
                 <span v-else>Fermer l'appareil photo</span>
             </button>
           </div>
-          
           <div v-show="isCameraOpen && isLoading" class="camera-loading">
             <ul class="loader-circle">
               <li>Connexion à la caméra</li>
@@ -44,7 +41,7 @@
               <img src="@/assets/camera.png">
             </button>
           </div>
-          <div v-if="isPhotoTaken && isCameraOpen" class="camera-download">
+          <div v-if="isPhotoTaken && isCameraOpen" class="camera-download text-center pt-1">
             <!-- <a id="downloadPhoto" download="my-photo.jpg" class="button" role="button" @click="downloadImage">
               Télécharger
             </a> -->
@@ -58,6 +55,11 @@
 </template>
 
 <script>
+import axios from 'axios'
+
+const apiServices = "/api/users/3/services"
+
+
 export default {
   data() {
     return {
@@ -65,10 +67,16 @@ export default {
       isPhotoTaken: false,
       isShotPhoto: false,
       isLoading: false,
-      link: '#'
+      link: '#',
+      services: null,
+      plantList: [],
+      plant_select: null,
     }
   },
-  
+  created: function () {
+        this.fetchData(),
+        this.fetchPlants()
+    },
   methods: {
     toggleCamera() {
       if(this.isCameraOpen) {
@@ -136,7 +144,41 @@ export default {
     },
     previewFiles(event) {
       console.log(event.target.files);
-   }
+   },
+   submitForm(){
+
+    axios.post(apiService, { user: 1, plantsList: this.plant_select })
+        .then((res) => {
+            console.log(res)
+        })
+        .catch((error) => {
+            console.log(error)
+        }).finally(() => {
+            //Perform action in always
+        });
+    },
+    fetchPlants: async function(annonce){
+      try{
+        const url = annonce['_links']['plantsList']['href'].replace("http://localhost:8080/", "");
+        const responsePlants = await axios.get(url)
+        this.plantList.push(responsePlants['data']['spicies'])
+        console.log(this.plantList)
+        console.log(responsePlants['data']['spicies'])
+      }catch (error){
+        console.log(error)
+      }
+    },
+    fetchData: async function () {
+        try {
+            const response = await axios.get(apiServices)
+            this.services = response['data']['_embedded']['services']
+            console.log(this.services)
+        } catch (error) {
+            console.log(error)
+        };
+        this.services.forEach(annonce => this.fetchPlants(annonce));
+    },
+
   }
 }
 </script>

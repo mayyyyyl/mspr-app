@@ -57,16 +57,9 @@
   const apiAdviceList = "/api/botanists/1/advices"
   const apiBotanist = "/api/botanists"
 
-
-  import Navigation from '@/components/Navigation.vue';
-  import Footer from '@/components/Footer.vue'
   import axios from 'axios';
   
   export default {
-    components: {
-      Navigation, 
-      Footer
-    },
     data() {
         return {
             adviceList: null,
