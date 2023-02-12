@@ -34,6 +34,8 @@ export default {
         return {
             plantList: null,
             plant_select: null,
+            data: [],
+            annonce: [],
         };
     },
   created: function () {
@@ -49,20 +51,30 @@ export default {
                   console.log(error)
               };
             },
-            submitForm(){
+            submitForm: async function () {
 
-            axios.post(apiService, { user: 1, plantsList: this.plant_select })
-                 .then((res) => {
-                     console.log(res)
-                 })
-                 .catch((error) => {
-                     console.log(error)
-                 }).finally(() => {
-                     //Perform action in always
-                 });
+            this.annonce = {user: 1, plantsList: this.plant_select, gardien:3};
+            console.log(this.annonce);
+            try {
+              const response = await axios.post(apiService, this.annonce);
+              // this.annonce.push(response.annonce);
+            } catch(error) {
+              console.log(error)
+            }
+          },
         }
-          }
-}
+      }
+            // axios.post(apiService, this.annonce)
+            //      .then((res) => {
+            //         console.log(res);
+            //         this.data.push(res['data'])
+            //      })
+            //      .catch((error) => {
+            //          console.log(error)
+            //      }).finally(() => {
+            //       console.log("ok")
+            //      });
+// }
 </script>
 <style scoped>
 #icon_btn{
