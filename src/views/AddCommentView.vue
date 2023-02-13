@@ -6,7 +6,7 @@
     </div>
       </div>
       <div class="row p-4">
-        <form class="text-center" action="">
+        <form id="plant_id" v-on:submit.prevent="submitForm">
       <label class="margin" for="proprietaires">Propriétaire :</label>
       <select name="proprietaires" id="proprietaires">
         <option v-for = "proprietaire in proprietaires" :value="proprietaire.id">{{ proprietaire.name }}</option>
@@ -48,14 +48,47 @@
   ];
   const conseil = "";
 
+  const apiConseil = "/api/users"
+
   export default {
     data(){
       return {
         proprietaires,
         plantes,
-        conseil
+        conseil,
+        annonce: null,
       }
-    }
+    },
+    created: function () {
+        this.fetchData()
+    },
+    methods: {
+        fetchData: async function () {
+              try {
+                  const response = await axios.get(apiPlantList)
+                  this.users = response['data']['_embedded']['users']
+                  console.log(this.plantList)
+              } catch (error) {
+                  console.log(error)
+              };
+            },
+            submitForm: async function () {
+
+            this.annonce = {user: ["api/users/1"], plantsList: this.plant_select, gardien:["api/users/3"]};
+            console.log(this.annonce);
+            try {
+              const response = await axios.post(apiService, this.annonce);
+              // this.annonce.push(response.annonce);
+            } catch(error) {
+              console.log(error)
+            }
+            try {
+              const resp = await axios.put(apiService + "/2", this.annonce)
+            } catch(error) {
+              console.log(error)
+            }
+          },
+        }
   }
   </script>
   <style scoped>

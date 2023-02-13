@@ -59,8 +59,8 @@ export default {
               };
               for (var i = 1; i < this.users.length; i++) {
                 try {
-                    const responsePlants = await axios.get(apiUsers +"/" + i + "/services")
-                    this.userPlants.push(responsePlants['data']['_embedded']['services'].length)
+                    const responsePlants = await axios.get(apiUsers +"/" + i + "/sers")
+                    this.userPlants.push(responsePlants['data']['_embedded']['sers'].length)
                     console.log(this.userPlants)
                 } catch (error) {
                     console.log(error)

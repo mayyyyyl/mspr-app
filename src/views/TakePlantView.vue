@@ -54,7 +54,7 @@ export default {
         },
         submitForm(){
 
-        axios.post(apiService, { user:2, gardien:1 ,plantsList: this.plant_select })
+        axios.post(apiService, { gardien:1 , plantsList: `http://localhost:8080/api/plantsList/${this.plant_select}`})
             .then((res) => {
                 console.log(res)
             })

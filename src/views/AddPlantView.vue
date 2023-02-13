@@ -27,7 +27,7 @@
 import axios from 'axios';
 
 const apiPlantList = "/api/plantsLists"
-const apiService = "/api/services"
+const apiService = "/api/sers"
 
 export default {
   data() {
@@ -53,7 +53,8 @@ export default {
             },
             submitForm: async function () {
 
-            this.annonce = {user: 1, plantsList: this.plant_select, gardien:3};
+              // plantsList: this.plant_select
+            this.annonce = {user: "http://localhost:8080/api/users/1", plantsList: `http://localhost:8080/api/plantsLists/${this.plant_select}`, gardien:"http://localhost:8080/api/users/3"};
             console.log(this.annonce);
             try {
               const response = await axios.post(apiService, this.annonce);
@@ -61,6 +62,11 @@ export default {
             } catch(error) {
               console.log(error)
             }
+            // try {
+            //   const resp = await axios.put(apiService + "/2", this.annonce)
+            // } catch(error) {
+            //   console.log(error)
+            // }
           },
         }
       }
