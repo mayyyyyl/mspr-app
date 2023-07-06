@@ -26,8 +26,8 @@
 <script>
 import axios from 'axios';
 
-const apiPlantList = "/api/plantsLists"
-const apiService = "/api/sers"
+const apiService = `${process.env.VUE_APP_API}sers`
+const apiPlantList = `${process.env.VUE_APP_API}plantsLists`
 
 export default {
   data() {
@@ -50,37 +50,19 @@ export default {
               } catch (error) {
                   console.log(error)
               };
-            },
-            submitForm: async function () {
+        },
+        submitForm: async function () {
 
-              // plantsList: this.plant_select
-            this.annonce = {user: "http://localhost:8080/api/users/1", plantsList: `http://localhost:8080/api/plantsLists/${this.plant_select}`, gardien:"http://localhost:8080/api/users/3"};
-            console.log(this.annonce);
-            try {
-              const response = await axios.post(apiService, this.annonce);
-              // this.annonce.push(response.annonce);
-            } catch(error) {
-              console.log(error)
-            }
-            // try {
-            //   const resp = await axios.put(apiService + "/2", this.annonce)
-            // } catch(error) {
-            //   console.log(error)
-            // }
-          },
+        this.annonce = {user: `${process.env.VUE_APP_API}users/1`, plantsList: `${process.env.VUE_APP_API}plantsLists/${this.plant_select}`, gardien:`${process.env.VUE_APP_API}users/3`};
+        console.log(this.annonce);
+        try {
+          await axios.post(apiService, this.annonce);
+        } catch(error) {
+          console.log(error)
         }
+        },
       }
-            // axios.post(apiService, this.annonce)
-            //      .then((res) => {
-            //         console.log(res);
-            //         this.data.push(res['data'])
-            //      })
-            //      .catch((error) => {
-            //          console.log(error)
-            //      }).finally(() => {
-            //       console.log("ok")
-            //      });
-// }
+      }
 </script>
 <style scoped>
 #icon_btn{

@@ -48,7 +48,8 @@
   ];
   const conseil = "";
 
-  const apiConseil = "/api/users"
+  const apiConseil = `${process.env.VUE_APP_BEER_API}/api/users/`
+  // "/api/users"
 
   export default {
     data(){
@@ -78,7 +79,6 @@
             console.log(this.annonce);
             try {
               const response = await axios.post(apiService, this.annonce);
-              // this.annonce.push(response.annonce);
             } catch(error) {
               console.log(error)
             }

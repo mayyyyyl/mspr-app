@@ -57,8 +57,7 @@
 <script>
 import axios from 'axios'
 
-const apiServices = "/api/users/3/services"
-
+const apiServices = `${process.env.VUE_APP_API}users/3/services`
 
 export default {
   data() {

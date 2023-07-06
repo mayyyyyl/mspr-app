@@ -52,8 +52,9 @@
 </template>
   
   <script>
-  const apiAdviceList = "/api/botanists/1/advices"
-  const apiBotanist = "/api/botanists"
+  
+  const apiAdviceList = `${process.env.VUE_APP_API}botanists/1/advices`
+  const apiBotanist = `${process.env.VUE_APP_API}botanists`
 
   import axios from 'axios';
   

@@ -31,6 +31,11 @@ const routes = [
     path: '/suivi',
     name: 'suivi',
     component: () => import('../views/TrackingView.vue')
+  },
+  {
+    path: '/chat',
+    name: 'chat',
+    component: () => import('../views/Chat.vue')
   }
 ]
 

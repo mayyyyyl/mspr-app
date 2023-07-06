@@ -11,5 +11,10 @@ module.exports = defineConfig({
         }
       }
     }
-  }
+  },
+  // compilerOptions: {
+  //   isCustomElement: tagName => {
+  //     return tagName === 'vue-advanced-chat' || tagName === 'emoji-picker'
+  //   }
+  // }
 })

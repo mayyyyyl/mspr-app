@@ -19,9 +19,8 @@
 <script>
 import axios from 'axios'
 
-
-const apiUsers = "/api/users"
-const apiService = "/api/services"
+const apiUsers = `${process.env.VUE_APP_API}users`
+const apiService = `${process.env.VUE_APP_API}sers`
 
 export default {
     data() {
@@ -54,7 +53,7 @@ export default {
         },
         submitForm(){
 
-        axios.post(apiService, { gardien:1 , plantsList: `http://localhost:8080/api/plantsList/${this.plant_select}`})
+        axios.post(apiService, { gardien:1 , plantsList: ` ${process.env.VUE_APP_API}plantsList/${this.plant_select}`})
             .then((res) => {
                 console.log(res)
             })

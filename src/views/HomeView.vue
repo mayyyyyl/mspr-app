@@ -12,13 +12,13 @@
           </router-link>
         </div>
       </div>
-      <div class="row">
+      <div class="row pb-4">
         <div class="col-12 pt-4">
           <span id="title_bloc">Plantes disponible à garder :</span>
         </div>
       </div>
       <router-link to="/garder_des_plantes" custom v-slot="{ navigate }">
-      <div class="row p-2 m-3 align-items-center" id="bloc_annonce" v-for="user, index in users" @click="navigate">
+      <div class="row p-2 m-auto mb-3 align-items-center" id="bloc_annonce" v-for="user, index in users" @click="navigate">
         <div class="col-3">
           <img src="@/assets/avatar.png" style="width: 25px;">
         </div>
@@ -37,7 +37,7 @@
 import axios from 'axios'
 
 
-const apiUsers = "/api/users"
+const apiUsers = `${process.env.VUE_APP_API}users`
 
 export default {
     data() {
@@ -53,6 +53,7 @@ export default {
         fetchData: async function () {
               try {
                   const response = await axios.get(apiUsers)
+                  console.log(response)
                   this.users = response['data']['_embedded']['users']
               } catch (error) {
                   console.log(error)
